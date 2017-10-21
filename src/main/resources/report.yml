@@ -1,0 +1,99 @@
+report:
+  -
+   name: Torque_CN_Android
+   project_id: 1431430
+   max_limit: 500
+   fields:
+      -
+       name: accepted
+       criteria: 
+          story_state: accepted
+      -
+       name: delivered
+       criteria: 
+          story_state: delivered
+      -
+       name: qc_pass
+       criteria: 
+           story_state: finished
+           contains_tag: qc pass
+      -
+       name: qc_pending
+       criteria:
+          story_state: finished
+          before_story: 11111
+          does_not_contain_tag: qc pass
+      -
+       name: next_build
+       criteria: 
+           story_state: finished
+           before_story: 111112
+           after_story: 111113
+      -
+       name: waiting_for_merge
+       criteria: 
+           before_story: 111113
+           after_story: 1111114
+      -
+       name: dev_in_progress
+       criteria:
+           after_story: 11111115
+           story_state: started
+      -
+       name: prioratized
+       criteria: 
+           story_state: unstarted
+      -
+       name: iceboxed
+       criteria:
+           story_state: unscheduled
+             
+  -
+   name: Torque CN iOS
+   project_id: 1431428
+   max_limit: 500
+   fields:
+      -
+       name: accepted
+       criteria: 
+          story_state: accepted
+      -
+       name: delivered
+       criteria: 
+          story_state: delivered
+      -
+       name: qc_pass
+       criteria: 
+           story_state: finished
+           contains_tag: qc pass
+      -
+       name: qc_pending
+       criteria:
+          story_state: finished
+          before_story: 11111
+          does_not_contain_tag: qc pass
+      -
+       name: next_build
+       criteria: 
+           story_state: finished
+           before_story: 111112
+           after_story: 111113
+      -
+       name: waiting_for_merge
+       criteria: 
+           before_story: 111113
+           after_story: 1111114
+      -
+       name: dev_in_progress
+       criteria:
+           after_story: 11111115
+           story_state: started
+      -
+       name: prioratized
+       criteria: 
+          story_state: unstarted
+      -
+       name: iceboxed
+       criteria:
+          story_state: unscheduled   
+                    
