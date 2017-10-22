@@ -15,7 +15,7 @@ public class ConfigManager {
 
 	private static final String TRACKER_BASE_URL = "https://www.pivotaltracker.com/services/v5/projects/";
 	private static List<ReportConfig>  configs;
-	private static Map<String, Map<String, UrlBuilder>> transformed;
+	private static Map<String, Map<String, Map<String, UrlBuilder>>> transformed;
 	
 	public static void init(File file) throws JsonParseException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
@@ -35,7 +35,7 @@ public class ConfigManager {
 		}
 	}
 
-	public static Map<String, Map<String, UrlBuilder>> transformed() {
+	public static Map<String, Map<String, Map<String, UrlBuilder>>> transformed() {
 		return transformed;
 	}
 

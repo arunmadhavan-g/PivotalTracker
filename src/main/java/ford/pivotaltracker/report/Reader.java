@@ -18,13 +18,18 @@ public class Reader {
 	private static final String API_KEY = "4f39020862d53a30161a3e63f48e4c46";
 	private final OkHttpClient client = new OkHttpClient();
 	
-	public Map<String, Map<String, List<Story>>> process() throws URISyntaxException, IOException {
-		Map<String, Map<String, UrlBuilder>> transformed = ConfigManager.transformed();
-		Map<String, Map<String, List<Story>>> result = new HashMap<>();
-		for(String projectName: transformed.keySet()) {
-			result.put(projectName, processProject(transformed.get(projectName)));
+	public Map<String , Map<String, Map<String, List<Story>>>> process() throws URISyntaxException, IOException {
+		Map<String, Map<String, Map<String, UrlBuilder>>> allProjectsMap = ConfigManager.transformed();
+		Map<String, Map<String, Map<String, List<Story>>>> allProjectBuilderMap = new HashMap<>();
+		for(String projectName: allProjectsMap.keySet()) {
+			Map<String, Map<String, UrlBuilder>> projectMap = allProjectsMap.get(projectName);  
+			Map<String, Map<String, List<Story>>> projectBuilderMap = new HashMap<>();
+			for(String tagName: projectMap.keySet()) {
+				projectBuilderMap.put(tagName, processProject(projectMap.get(tagName)));
+			}
+			allProjectBuilderMap.put(projectName, projectBuilderMap);
 		}
-		return result;
+		return allProjectBuilderMap;
 	}
 
 	private Map<String, List<Story>> processProject(Map<String, UrlBuilder> projectCriteria) throws URISyntaxException, IOException {
@@ -45,9 +50,10 @@ public class Reader {
 								.execute()
 								.body()
 								.string();
-		return new Gson()
-				.fromJson(response, new TypeToken<List<Story>>(){}.getType() );
-
+		return urlBuilder.filter(
+								new Gson()
+								.fromJson(response, new TypeToken<List<Story>>(){}.getType())
+								);
 	}
 
 

@@ -12,25 +12,26 @@ import lombok.Data;
 public class ReportConfig {
 	private String name;
 	private String project_id;
-	@JsonIgnoreProperties(ignoreUnknown=true)
+	@JsonIgnoreProperties(ignoreUnknown = true)
 	private int max_limit;
-	@JsonIgnoreProperties(ignoreUnknown=true)
-	private String main_tag;
+	@JsonIgnoreProperties(ignoreUnknown = true)
+	private List<String> main_tag;
 	private List<Field> fields;
-	
-	public Map<String, UrlBuilder> urlBuilder(String baseUrl) {
-		Map<String, UrlBuilder> builderMap = new HashMap<>();
-		builderMap.put("all", builderInstance(baseUrl));
-		for(Field field: fields) {
-			builderMap.put(field.getName(), field.urlBuilder(builderInstance(baseUrl)));
+
+	public Map<String, Map<String, UrlBuilder>> urlBuilder(String baseUrl) {
+		Map<String, Map<String, UrlBuilder>> resultMap = new HashMap<>();
+		for (String tag : main_tag) {
+			Map<String, UrlBuilder> builderMap = new HashMap<>();
+			builderMap.put("all", builderInstance(baseUrl, tag));
+			for (Field field : fields) {
+				builderMap.put(field.getName(), field.urlBuilder(builderInstance(baseUrl, tag)));
+			}
+			resultMap.put(tag, builderMap);
 		}
-		return builderMap;
+		return resultMap;
 	}
-	
-	private UrlBuilder builderInstance(String baseUrl) {
-		return new UrlBuilder(baseUrl)
-					.forEpic(main_tag)
-					.projectId(project_id)
-					.limit(max_limit);
+
+	private UrlBuilder builderInstance(String baseUrl, String tag) {
+		return new UrlBuilder(baseUrl).forEpic(tag).projectId(project_id).limit(max_limit);
 	}
 }

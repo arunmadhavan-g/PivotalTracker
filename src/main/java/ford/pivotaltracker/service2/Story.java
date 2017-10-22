@@ -23,6 +23,14 @@ public class Story {
 	private List<Long> owner_ids;
     private List<Label> labels;
     private String owned_by_id;
+    
+	public boolean hasTag(String tag) {
+		for(Label label: labels) {
+			if(label.hasTag(tag))
+				return true;
+		}
+		return false;
+	}
 
 }
 

@@ -3,9 +3,17 @@ report:
    name: Torque_CN_Android
    project_id: 1431430
    max_limit: 500
-   main_tag: v1.9
+   main_tag: 
+    - v1.9
+    - new sms flow
+    - extended warranty
    fields:
       -
        name: accepted
        criteria: 
           story_state: accepted
+      -
+       name: qc_pass
+       criteria: 
+           story_state: finished
+           contains_tag: qc pass

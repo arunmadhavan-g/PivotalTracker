@@ -28,8 +28,9 @@ public class ReaderTest {
 	@Test
 	public void reader_readsForProject_UsingConfigManagerSingleton() throws Exception {
 		Reader reader = new Reader();
-		Map<String, Map<String, List<Story>>> processed = reader.process();
-		System.out.println(processed.keySet());
-		assertThat(processed.get("Torque_CN_Android")).containsKeys("all","accepted");
+		Map<String, Map<String, Map<String, List<Story>>>> processed = reader.process();
+		assertThat(processed.get("Torque_CN_Android")).containsKeys("v1.9","new sms flow","extended warranty");
+		assertThat(processed.get("Torque_CN_Android").get("v1.9").get("all")).hasSize(126);
+		assertThat((processed.get("Torque_CN_Android").get("v1.9").get("qc_pass"))).hasSize(2);
 	}
 }

@@ -2,9 +2,13 @@ package ford.pivotaltracker.report;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ford.pivotaltracker.service2.Story;
 import okhttp3.Request;
 import okhttp3.Request.Builder;
 
@@ -17,6 +21,8 @@ public class UrlBuilder {
 	private String beforeId;
 	private String afterId;
 	private String state;
+	private String tag;
+	private String notHaveTag;
 	
 	public UrlBuilder(String baseURL) {
 		this.baseURL = baseURL;
@@ -51,6 +57,16 @@ public class UrlBuilder {
 		return this;
 	}
 
+	public UrlBuilder containTag(String tag) {
+		this.tag = tag;
+		return this;
+	}
+	
+	public UrlBuilder doesNotContainTag(String tag) {
+		this.notHaveTag = tag;
+		return this;
+	}
+	
 	public String build() throws URISyntaxException, UnsupportedEncodingException {
 		return new StringBuilder(String.format("%s%s/stories?", baseURL, projectId))
 					.append("with_label=")
@@ -87,5 +103,24 @@ public class UrlBuilder {
 		return new Request.Builder()
 						  .url(build());
 	}
+
+	public List<Story> filter(List<Story> stories) {
+		return applyNotThereTagFilter(
+				applyTagFilter(stories.stream()))
+				.collect(Collectors.toList());
+	}
 	
+	private Stream<Story> applyTagFilter(Stream<Story> storyStream){
+		if(StringUtils.isNotEmpty(tag)) {
+			return storyStream.filter(story -> story.hasTag(tag));
+		}
+		return storyStream;
+	}
+	
+	private Stream<Story> applyNotThereTagFilter(Stream<Story> storyStream){
+		if(StringUtils.isNotEmpty(notHaveTag)) {
+			return storyStream.filter(story -> !story.hasTag(notHaveTag));
+		}
+		return storyStream;
+	}
 }

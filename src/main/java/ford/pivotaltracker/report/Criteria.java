@@ -16,6 +16,8 @@ public class Criteria {
 	public UrlBuilder urlBuilder(UrlBuilder builder) {
 		return builder.afterId(after_story)
 						.beforeId(before_story)
-						.withState(story_state);
+						.withState(story_state)
+						.containTag(contains_tag)
+						.doesNotContainTag(does_not_contain_tag);
 	}
 }

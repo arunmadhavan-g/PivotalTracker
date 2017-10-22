@@ -3,7 +3,17 @@ report:
    name: Torque_CN_Android
    project_id: 1431430
    max_limit: 500
-   main_tag: v1.9
+   main_tag: 
+    - v1.9
+    - new sms flow
+    - extended warranty
+    - fuel-poi favorites
+    - cmax
+    - recall
+    - defects 1.9
+    - appreciation 1.9
+    - global 1.9
+    - credit 1.9
    fields:
       -
        name: accepted
@@ -53,6 +63,17 @@ report:
    name: Torque CN iOS
    project_id: 1431428
    max_limit: 500
+   main_tag: 
+    - v1.9
+    - new sms flow
+    - extended warranty
+    - fuel-poi favorites
+    - cmax
+    - recall
+    - defects 1.9
+    - appreciation 1.9
+    - global 1.9
+    - credit 1.9
    fields:
       -
        name: accepted
