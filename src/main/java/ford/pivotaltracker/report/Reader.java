@@ -15,6 +15,9 @@ import okhttp3.Request;
 
 public class Reader {
 
+	private static final String API_KEY = "4f39020862d53a30161a3e63f48e4c46";
+	private final OkHttpClient client = new OkHttpClient();
+	
 	public Map<String, Map<String, List<Story>>> process() throws URISyntaxException, IOException {
 		Map<String, Map<String, UrlBuilder>> transformed = ConfigManager.transformed();
 		Map<String, Map<String, List<Story>>> result = new HashMap<>();
@@ -24,21 +27,28 @@ public class Reader {
 		return result;
 	}
 
-	@SuppressWarnings("serial")
 	private Map<String, List<Story>> processProject(Map<String, UrlBuilder> projectCriteria) throws URISyntaxException, IOException {
 		Map<String, List<Story>> result = new HashMap<>();
-		Request.Builder requestBuilder = new Request.Builder()
-									.header("X-TrackerToken", "4f39020862d53a30161a3e63f48e4c46");
-		OkHttpClient client = new OkHttpClient();				
-		Request request = null;
 		for(String fieldName: projectCriteria.keySet()) {
-			request = projectCriteria.get(fieldName).buildRequest(requestBuilder);
-			String response = client.newCall(request).execute().body().string();
-			Gson gson = new Gson();
-			List<Story> fromJson = gson.fromJson(response, new TypeToken<List<Story>>(){}.getType() );
-			result.put(fieldName, fromJson);
+			result.put(fieldName, readStories(projectCriteria.get(fieldName)));
 		}
 		return result;
 	}
+
+	@SuppressWarnings("serial")
+	private List<Story> readStories(UrlBuilder urlBuilder) throws URISyntaxException, IOException {
+		Request request = urlBuilder.requestBuilder()
+									.header("X-TrackerToken", API_KEY)
+									.build();
+
+		String response = client.newCall(request)
+								.execute()
+								.body()
+								.string();
+		return new Gson()
+				.fromJson(response, new TypeToken<List<Story>>(){}.getType() );
+
+	}
+
 
 }

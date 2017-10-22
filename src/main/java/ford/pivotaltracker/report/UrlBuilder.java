@@ -82,10 +82,10 @@ public class UrlBuilder {
 		return StringUtils.isEmpty(value)? "": String.format("&%s=%s",queryParam, value);
 	}
 
-	public Request buildRequest(Builder requestBuilder) throws UnsupportedEncodingException, URISyntaxException {
-		return requestBuilder.url(build())
-					.build();
-					
+
+	public Builder requestBuilder() throws UnsupportedEncodingException, URISyntaxException {
+		return new Request.Builder()
+						  .url(build());
 	}
 	
 }
