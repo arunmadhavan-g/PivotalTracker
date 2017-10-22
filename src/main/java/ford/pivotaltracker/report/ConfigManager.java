@@ -2,7 +2,7 @@ package ford.pivotaltracker.report;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,24 +13,29 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 public class ConfigManager {
 
-	private static List<ReportConfig>  reportConfigurations;
-	private static Map<String, List<Map<String, URI>>> transformed;
+	private static final String TRACKER_BASE_URL = "https://www.pivotaltracker.com/services/v5/projects/";
+	private static List<ReportConfig>  configs;
+	private static Map<String, Map<String, UrlBuilder>> transformed;
 	
 	public static void init(File file) throws JsonParseException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-		reportConfigurations =  mapper.readValue(file, ReportConfigs.class)
+		configs =  mapper.readValue(file, ReportConfigs.class)
 					.getReport();
+		transform();
 	}
 
 	static List<ReportConfig> configs() {
-		return reportConfigurations;
+		return configs;
 	}
 
-	public static void transform() {
-		
+	private static void transform() {
+		transformed = new HashMap<>();
+		for(ReportConfig config: configs) {
+			transformed.put(config.getName(), config.urlBuilder(TRACKER_BASE_URL));
+		}
 	}
 
-	public static Map<String, List<Map<String, URI>>> transformed() {
+	public static Map<String, Map<String, UrlBuilder>> transformed() {
 		return transformed;
 	}
 

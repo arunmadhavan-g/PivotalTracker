@@ -5,6 +5,9 @@ import java.net.URISyntaxException;
 
 import org.apache.commons.lang3.StringUtils;
 
+import okhttp3.Request;
+import okhttp3.Request.Builder;
+
 public class UrlBuilder {
 
 	private final String baseURL;
@@ -77,6 +80,12 @@ public class UrlBuilder {
 
 	private String returnQueryOrBlank(String value, String queryParam) {
 		return StringUtils.isEmpty(value)? "": String.format("&%s=%s",queryParam, value);
+	}
+
+	public Request buildRequest(Builder requestBuilder) throws UnsupportedEncodingException, URISyntaxException {
+		return requestBuilder.url(build())
+					.build();
+					
 	}
 	
 }

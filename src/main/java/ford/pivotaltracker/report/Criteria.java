@@ -12,4 +12,10 @@ public class Criteria {
 	private String before_story;
 	private String does_not_contain_tag;
 	private String after_story;
+	
+	public UrlBuilder urlBuilder(UrlBuilder builder) {
+		return builder.afterId(after_story)
+						.beforeId(before_story)
+						.withState(story_state);
+	}
 }
