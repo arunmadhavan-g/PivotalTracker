@@ -1,5 +1,7 @@
 package ford.pivotaltracker.report;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -28,9 +30,6 @@ public class ReaderTest {
 		Reader reader = new Reader();
 		Map<String, Map<String, List<Story>>> processed = reader.process();
 		System.out.println(processed.keySet());
-		System.out.println(processed.get("Torque_CN_Android").keySet());
-		System.out.println(processed.get("Torque_CN_Android").get("all").size());
-		System.out.println(processed.get("Torque_CN_Android").get("accepted").size());
-		
+		assertThat(processed.get("Torque_CN_Android")).containsKeys("all","accepted");
 	}
 }
