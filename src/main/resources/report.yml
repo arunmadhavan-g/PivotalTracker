@@ -3,6 +3,7 @@ report:
    name: Torque_CN_Android
    project_id: 1431430
    max_limit: 500
+   main_tag: v1.9
    fields:
       -
        name: accepted
