@@ -2,7 +2,7 @@ package ford.pivotaltracker.config;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import ford.pivotaltracker.report.UrlBuilder;
+import ford.pivotaltracker.read.UrlBuilder;
 import lombok.Data;
 
 @Data

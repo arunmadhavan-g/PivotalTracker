@@ -1,6 +1,6 @@
 package ford.pivotaltracker.config;
 
-import ford.pivotaltracker.report.UrlBuilder;
+import ford.pivotaltracker.read.UrlBuilder;
 import lombok.Data;
 
 @Data

@@ -1,4 +1,4 @@
-package ford.pivotaltracker.report;
+package ford.pivotaltracker.read;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -6,6 +6,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 
 import org.junit.Test;
+
+import ford.pivotaltracker.read.UrlBuilder;
 
 public class URLBuilderTest {
 

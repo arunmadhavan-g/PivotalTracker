@@ -1,4 +1,4 @@
-package ford.pivotaltracker.report;
+package ford.pivotaltracker.read;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ford.pivotaltracker.data.Story;
+import ford.pivotaltracker.beans.tracker.Story;
 import okhttp3.Request;
 import okhttp3.Request.Builder;
 

@@ -1,4 +1,4 @@
-package ford.pivotaltracker.report;
+package ford.pivotaltracker.read;
 
 import java.io.File;
 import java.io.IOException;
