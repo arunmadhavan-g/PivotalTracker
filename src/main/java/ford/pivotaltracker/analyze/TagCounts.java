@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class Report {
-	private List<TagCounts> aggregated;
+public class TagCounts {
+	private List<FieldCount> fieldCounts;
+	private String name;
 }
