@@ -11,6 +11,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
+import ford.pivotaltracker.config.ReportConfig;
+import ford.pivotaltracker.config.ReportConfigs;
+
 public class ConfigManager {
 
 	private static final String TRACKER_BASE_URL = "https://www.pivotaltracker.com/services/v5/projects/";

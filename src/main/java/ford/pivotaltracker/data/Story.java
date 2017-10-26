@@ -1,4 +1,4 @@
-package ford.pivotaltracker.service;
+package ford.pivotaltracker.data;
 
 import java.util.List;
 
@@ -23,27 +23,12 @@ public class Story {
 	private List<Long> owner_ids;
     private List<Label> labels;
     private String owned_by_id;
-
-    public Report updateReport(Report report) {
-    	switch(current_state) {
-    		case "accepted": report.incrementAcceptedWithPoints(estimate); break; 
-    		case "unstarted":report.incrementUnstartedWithPoints(estimate); break;
-    		case "unscheduled":report.incrementIceboxed(); break;
-    		default:report.incrementInProgressWithPoints(estimate, this); break;
-    	}
-		return report;
-	}
-
-	public boolean isQCPass() {
+    
+	public boolean hasTag(String tag) {
 		for(Label label: labels) {
-			if(label.isQCPass())
+			if(label.hasTag(tag))
 				return true;
 		}
-		return false;
-	}
-
-	public boolean isBlocked() {
-		
 		return false;
 	}
 

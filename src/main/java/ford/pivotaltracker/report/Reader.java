@@ -9,7 +9,7 @@ import java.util.Map;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
-import ford.pivotaltracker.service2.Story;
+import ford.pivotaltracker.data.Story;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 

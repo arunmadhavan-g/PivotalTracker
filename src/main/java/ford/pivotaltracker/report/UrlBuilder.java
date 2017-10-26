@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ford.pivotaltracker.service2.Story;
+import ford.pivotaltracker.data.Story;
 import okhttp3.Request;
 import okhttp3.Request.Builder;
 

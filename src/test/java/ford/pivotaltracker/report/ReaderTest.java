@@ -15,7 +15,7 @@ import org.junit.Test;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import ford.pivotaltracker.service2.Story;
+import ford.pivotaltracker.data.Story;
 
 public class ReaderTest {
 

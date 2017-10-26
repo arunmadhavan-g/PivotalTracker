@@ -1,4 +1,4 @@
-package ford.pivotaltracker.service2;
+package ford.pivotaltracker.data;
 
 import lombok.Data;
 
