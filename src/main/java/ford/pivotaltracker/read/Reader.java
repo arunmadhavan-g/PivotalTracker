@@ -1,4 +1,4 @@
-package ford.pivotaltracker.report;
+package ford.pivotaltracker.read;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -9,7 +9,7 @@ import java.util.Map;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
-import ford.pivotaltracker.data.Story;
+import ford.pivotaltracker.beans.tracker.Story;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 

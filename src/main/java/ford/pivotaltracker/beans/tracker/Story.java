@@ -1,4 +1,4 @@
-package ford.pivotaltracker.data;
+package ford.pivotaltracker.beans.tracker;
 
 import java.util.List;
 

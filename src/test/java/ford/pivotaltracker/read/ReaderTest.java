@@ -1,4 +1,4 @@
-package ford.pivotaltracker.report;
+package ford.pivotaltracker.read;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,7 +15,9 @@ import org.junit.Test;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import ford.pivotaltracker.data.Story;
+import ford.pivotaltracker.beans.tracker.Story;
+import ford.pivotaltracker.read.ConfigManager;
+import ford.pivotaltracker.read.Reader;
 
 public class ReaderTest {
 

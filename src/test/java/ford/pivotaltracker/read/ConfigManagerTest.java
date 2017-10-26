@@ -1,4 +1,4 @@
-package ford.pivotaltracker.report;
+package ford.pivotaltracker.read;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,6 +11,9 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.google.common.collect.Lists;
+
+import ford.pivotaltracker.read.ConfigManager;
+import ford.pivotaltracker.read.UrlBuilder;
 
 public class ConfigManagerTest {
 
