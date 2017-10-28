@@ -18,6 +18,7 @@ import ford.pivotaltracker.analyze.Report;
 import ford.pivotaltracker.beans.tracker.Story;
 import ford.pivotaltracker.read.ConfigManager;
 import ford.pivotaltracker.read.Reader;
+import ford.pivotaltracker.read.ResultStore;
 
 public class ReportGeneratorTest {
 
@@ -31,10 +32,16 @@ public class ReportGeneratorTest {
 	public void createAggregateReportForGivenConfiguration() throws Exception {
 		Reader reader = new Reader();
 		Map<String, Map<String, Map<String, List<Story>>>> data = reader.process();
-		
-		Analyzer analyzer = new Analyzer();
-		Report analyzedData = analyzer.aggregateStories(data.get("Torque_CN_Android"));
+		Map<String, Report> analyzedData = Analyzer.aggregateStoryCount.apply(data);
 		System.out.println(analyzedData);
-		//assertThat(analyzedData).extracting("total").isEqualTo(new Integer[] {10, 20, 30});
+	}
+	
+	@Test
+	public void readFromKeyStoreIsFaster() throws Exception {
+		ResultStore.refresh();
+		Map<String, Report> firstResult = ResultStore.transform(Analyzer.aggregateStoryCount);
+		System.out.println(firstResult);
+		Map<String, Report> secondResult = ResultStore.transform(Analyzer.aggregateStoryCount);
+		System.out.println(secondResult);
 	}
 }
